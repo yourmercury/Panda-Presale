@@ -1,0 +1,24 @@
+.logo {
+  margin: 0.5rem;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.nav {
+  background-color: #282d34;
+  color: #dce2ec;
+  grid-area: sidebar;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav .navItem {
+  cursor: pointer;
+  margin: 0 1rem;
+  padding: 1rem 0.5rem;
+}
