@@ -10,7 +10,9 @@
 .header button {
   background-color: transparent;
   border: 1px solid grey;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  color: #21bf73;
+  font-weight: bold;
   padding: 0.5rem 0.8rem;
 }

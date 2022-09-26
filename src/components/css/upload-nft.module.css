@@ -1,15 +1,76 @@
+.container {
+  border: 1px solid #dce2ec;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 40%;
+}
+
+.dragArea {
+  align-items: center;
+  background-color: #f8f7fc;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 3rem 0;
+  position: relative;
+  width: 100%;
+}
+.dragArea.active {
+  border: 2px solid #fff;
+}
+
+.dragArea header {
+  color: #787c84;
+  font-weight: 500;
+}
+.dragArea span {
+  color: #787c84;
+  font-weight: 500;
+  margin: 10px 0 15px 0;
+}
+.dragArea button {
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #21bf73;
+  color: #21bf73;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 25px;
+}
+.dragArea img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.dragArea .fileUpload {
+  cursor: pointer;
+  position: absolute;
+  display: hidden;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .imageContainer {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
 .imageContainer .image {
-  width: 10rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 30%;
   height: auto;
 }
 
 .imageContainer .image img {
-  height: 10rem;
+  aspect-ratio: 1/1;
   object-fit: cover;
-  width: 10rem;
+  width: 100%;
 }

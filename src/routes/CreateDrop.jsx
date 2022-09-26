@@ -23,6 +23,13 @@ function CreateDrop(props) {
     [images]
   )
 
+  const handleRemoveImage = useCallback(
+    (indexToRemove) => {
+      setImages(images.filter((_, index) => index !== indexToRemove))
+    },
+    [images]
+  )
+
   const handleCreateDrop = useCallback(async () => {
     // store images to ipfs
     const ipfsImagesLinks = await storeFiles(images)
@@ -40,7 +47,11 @@ function CreateDrop(props) {
 
   return (
     <div className={styles.container}>
-      <UploadNFT images={images} onImageSelected={handleImageSelected} />
+      <UploadNFT
+        images={images}
+        onImageSelected={handleImageSelected}
+        onRemoveImage={handleRemoveImage}
+      />
       <DropDetails
         dropInput={dropInput}
         setDropInput={setDropInput}

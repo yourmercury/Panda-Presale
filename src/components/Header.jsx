@@ -11,7 +11,7 @@ function Header({ account, onConnect }) {
           {account.slice(0, 5)}...{account.slice(-4)}
         </div>
       ) : (
-        <button onClick={onConnect}>Connect</button>
+        <button onClick={onConnect}>Connect Wallet</button>
       )}
     </div>
   )
