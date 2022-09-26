@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react"
+import { toast } from "react-toastify"
 
 import { storeFiles, storeNFTMetadatas } from "../ipfs/storage"
 import { createNFTCollection } from "../nft-contract/createNFTCollection"
@@ -32,17 +33,37 @@ function CreateDrop(props) {
 
   const handleCreateDrop = useCallback(async () => {
     // store images to ipfs
-    const ipfsImagesLinks = await storeFiles(images)
+    const ipfsImagesLinks = await toast.promise(storeFiles(images), {
+      pending: "Storing NFT images and Metadata to IPFS",
+      success: "Success Storing!",
+      error: "Error Storing",
+    })
     // create array of metadata objects
     const nftMetadatas = ipfsImagesLinks.map((image, index) => ({
       image,
       ...dropInput.metadata[index],
     }))
     // store metadatas to ipfs
-    const uris = await storeNFTMetadatas(nftMetadatas)
+    const uris = await toast.promise(storeNFTMetadatas(nftMetadatas), {
+      pending: "Storing NFT metadatas to IPFS",
+      success: "Success Storing!",
+      error: "Error Storing",
+    })
     const { name, symbol } = dropInput
-    const collectionAddress = await createNFTCollection(uris, name, symbol)
-    console.log({ collectionAddress })
+    const collectionAddress = await toast.promise(
+      createNFTCollection(uris, name, symbol),
+      {
+        pending: "Creating Collection",
+        success: "Success Creating NFT Collection!",
+        error: "Error Creating NFT Collection",
+      }
+    )
+    toast.success(
+      <div>
+        <div>NFT collection created!</div>
+        <div>{collectionAddress}</div>
+      </div>
+    )
   }, [dropInput, images])
 
   return (

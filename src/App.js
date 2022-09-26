@@ -1,6 +1,7 @@
 import { ethers } from "ethers"
 import { useCallback, useState } from "react"
 import { Route, Routes } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 import CreateDrop from "./routes/CreateDrop"
 import Home from "./routes/Home"
@@ -9,6 +10,7 @@ import Header from "./components/Header"
 import Sidebar from "./components/Sidebar"
 
 import styles from "./App.module.css"
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
   const [account, setAccount] = useState()
@@ -21,13 +23,20 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <Header account={account} onConnect={handleConnect} />
       <Sidebar />
       <div className={styles.main}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="create-drop" element={<CreateDrop />} />
-        </Routes>
+        {account ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="create-drop" element={<CreateDrop />} />
+          </Routes>
+        ) : (
+          <div className={styles.connectWalletError}>
+            Please connect your wallet
+          </div>
+        )}
       </div>
     </div>
   )

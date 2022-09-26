@@ -14,3 +14,12 @@
   margin: 0.5rem;
   margin-top: 1.5rem;
 }
+
+.connectWalletError {
+  align-items: center;
+  color: #21bf73;
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  height: 100%;
+}
