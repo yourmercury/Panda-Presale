@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Pandasale
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Create Drop
 
-## Available Scripts
+Input format
+| Input | Format |
+|-----------------|-------------------|
+| Collection Name | Text |
+| Symbol | Text |
+| Metadata | JSON File (Array) |
+| NFT Images | Any Images |
 
-In the project directory, you can run:
+**Note:** Number of NFT images must equal the number of objects in Metadata JSON Array
 
-### `npm start`
+For example we upload 3 images then our json array should look like this:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+[
+  { "name": "Monkey One", "description": "Description one..." },
+  { "name": "Monkey Two", "description": "Description two..." },
+  { "name": "Monkey Three", "description": "Description three..." }
+]
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Or you can specify attributes (traits) in opensea metadata standard
 
-### `npm test`
+```
+[
+  {
+    "name": "Monkey One",
+    "description": "Description one...",
+    "attributes": [
+      {
+        "trait_type": "Base",
+        "value": "Starfish"
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "Big"
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "Surprised"
+      },
+      {
+        "trait_type": "Level",
+        "value": 5
+      },
+      {
+        "trait_type": "Stamina",
+        "value": 1.4
+      }
+    ]
+  },
+  {
+    "name": "Monkey Two",
+    "description": "Description two...",
+    "attributes": [
+      {
+        "trait_type": "Personality",
+        "value": "Sad"
+      },
+      {
+        "display_type": "boost_number",
+        "trait_type": "Aqua Power",
+        "value": 40
+      }
+    ]
+  },
+  {
+    "name": "Monkey Three",
+    "description": "Description three...",
+    "attributes": [
+      {
+        "display_type": "boost_percentage",
+        "trait_type": "Stamina Increase",
+        "value": 10
+      },
+      {
+        "display_type": "number",
+        "trait_type": "Generation",
+        "value": 2
+      }
+    ]
+  }
+]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
