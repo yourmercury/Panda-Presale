@@ -1,0 +1,47 @@
+.container {
+  margin: 1rem;
+  width: 100%;
+}
+
+.container .border {
+  border: 1px solid #dce2ec;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.container .formElement {
+  display: flex;
+  flex-direction: column;
+}
+
+.formElement input[type="file"] {
+  cursor: pointer;
+}
+
+.formElement input[type="file"]::file-selector-button {
+  display: none;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0.5rem 0;
+}
+
+.buttonContainer button {
+  background-color: #21bf73;
+  border-width: 0;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+}
+
+.formElement input {
+  background-color: #f8f7fc;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+}
