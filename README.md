@@ -2,7 +2,11 @@
 
 ## Create Drop
 
-Input format
+Input format (Images)
+Images should be named in alphabetical order. For example `a.jpg`, `b.jpg`, and so on.  
+Or numerical order is preferred. `1.jpg`, `2.jpg`, and so on. This allows proper mapping for metadata to images. Meaning that `1.jpg` gets mapped to 1st metadata
+
+Input format (Metadata.json)
 | Input | Format |
 |-----------------|-------------------|
 | Collection Name | Text |

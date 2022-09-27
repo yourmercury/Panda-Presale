@@ -33,23 +33,30 @@ function CreateDrop(props) {
 
   const validateForm = useCallback(() => {
     if (dropInput.name === "" || dropInput.symbol === "") {
-      toast.error("Please fill all feilds")
-      return false
+      return { inputs: "Please fill all feilds" }
     }
+    if (!images.length > 0)
+      return { images: "Please select images for the collection" }
     if (
       images.length > 0 &&
       dropInput.metadata &&
       images.length === dropInput.metadata.length
     )
-      return true
+      return
     else {
-      toast.error("Number of Images must equal the JSON metadata objects")
-      return false
+      return {
+        metadata: "Please select metadata file with metadatas equal to images.",
+      }
     }
   }, [dropInput, images])
 
+  const formErrors = validateForm()
+
   const handleCreateDrop = useCallback(async () => {
-    if (!validateForm()) return
+    if (formErrors) {
+      toast.error("Please resolve all form Errors")
+      return
+    }
     // store images to ipfs
     const ipfsImagesLinks = await toast.promise(storeFiles(images), {
       pending: "Storing NFT images and Metadata to IPFS",
@@ -82,7 +89,7 @@ function CreateDrop(props) {
         <div>{collectionAddress}</div>
       </div>
     )
-  }, [dropInput, images, validateForm])
+  }, [dropInput, images, formErrors])
 
   return (
     <div className={styles.container}>
@@ -95,6 +102,7 @@ function CreateDrop(props) {
         dropInput={dropInput}
         setDropInput={setDropInput}
         onCreateDrop={handleCreateDrop}
+        formErrors={formErrors}
       />
     </div>
   )

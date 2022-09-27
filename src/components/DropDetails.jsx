@@ -1,8 +1,11 @@
 import React, { useCallback } from "react"
+import { useState } from "react"
 
 import styles from "./css/drop-details.module.css"
 
-function DropDetails({ dropInput, setDropInput, onCreateDrop }) {
+function DropDetails({ dropInput, setDropInput, onCreateDrop, formErrors }) {
+  const [focused, setFocused] = useState({})
+
   const handleMetadataSelected = useCallback(
     ({ target }) => {
       const filereader = new FileReader()
@@ -25,6 +28,12 @@ function DropDetails({ dropInput, setDropInput, onCreateDrop }) {
           <input
             placeholder="Name"
             value={dropInput.name}
+            className={
+              focused.inputs &&
+              formErrors &&
+              formErrors.inputs &&
+              styles.inputError
+            }
             onChange={({ target }) =>
               setDropInput({ ...dropInput, name: target.value })
             }
@@ -35,24 +44,51 @@ function DropDetails({ dropInput, setDropInput, onCreateDrop }) {
           <input
             placeholder="Your collection Symbol"
             value={dropInput.symbol}
+            className={
+              focused.inputs &&
+              formErrors &&
+              formErrors.inputs &&
+              styles.inputError
+            }
+            onFocus={() => setFocused({ ...focused, inputs: true })}
             onChange={({ target }) =>
               setDropInput({ ...dropInput, symbol: target.value })
             }
           />
+          {focused.inputs && formErrors && formErrors.inputs && (
+            <div className={styles.formError}>{formErrors.inputs}</div>
+          )}
         </div>
 
         <div className={styles.formElement}>
-          <label>Metadata</label>
+          <label>
+            Metadata{" "}
+            {dropInput.metadata && dropInput.metadata.length && (
+              <i>({dropInput.metadata.length} metadatas in the file)</i>
+            )}
+          </label>
           <input
             type="file"
             accept="application/json"
             placeholder="Json file for metadatas"
+            className={
+              focused.metadata &&
+              formErrors &&
+              formErrors.metadata &&
+              styles.inputError
+            }
+            onFocus={() => setFocused({ ...focused, metadata: true })}
             onChange={handleMetadataSelected}
           />
+          {focused.metadata && formErrors && formErrors.metadata && (
+            <div className={styles.formError}>{formErrors.metadata}</div>
+          )}
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={onCreateDrop}>Create Drop</button>
+        <button onClick={onCreateDrop} disabled={formErrors}>
+          Create Drop
+        </button>
       </div>
     </div>
   )

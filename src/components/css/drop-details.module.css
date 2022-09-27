@@ -22,6 +22,20 @@
   display: none;
 }
 
+.buttonContainer button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.formElement .formError {
+  text-align: center;
+  color: #df4759;
+}
+
+.formElement .inputError {
+  border: 1px solid #df4759;
+}
+
 .buttonContainer {
   display: flex;
   flex-direction: row-reverse;
