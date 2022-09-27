@@ -24,15 +24,34 @@ function UploadNFT({ images, onImageSelected, onRemoveImage }) {
       </div>
       {images && (
         <div className={styles.imageContainer}>
-          {images.map((image, index) => (
-            <div
-              className={styles.image}
-              key={index}
-              onClick={() => onRemoveImage(index)}
-            >
-              <img alt="" src={URL.createObjectURL(image)} />
-            </div>
-          ))}
+          {images.length >= 3 ? (
+            <>
+              {images.slice(-3).map((image, index) => (
+                <div
+                  className={styles.image}
+                  key={index}
+                  onClick={() => onRemoveImage(images.length - index + 1)}
+                >
+                  <img alt="" src={URL.createObjectURL(image)} />
+                </div>
+              ))}
+              {images.length - 3 ? (
+                <>...and {images.length - 3} other NFT images</>
+              ) : (
+                ""
+              )}
+            </>
+          ) : (
+            images.map((image, index) => (
+              <div
+                className={styles.image}
+                key={index}
+                onClick={() => onRemoveImage(index)}
+              >
+                <img alt="" src={URL.createObjectURL(image)} />
+              </div>
+            ))
+          )}
         </div>
       )}
     </div>
