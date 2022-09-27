@@ -50,7 +50,7 @@ function DropDetails({ dropInput, setDropInput, onCreateDrop, formErrors }) {
               formErrors.inputs &&
               styles.inputError
             }
-            onFocus={() => setFocused({ ...focused, inputs: true })}
+            onBlur={() => setFocused({ ...focused, inputs: true })}
             onChange={({ target }) =>
               setDropInput({ ...dropInput, symbol: target.value })
             }
@@ -77,7 +77,7 @@ function DropDetails({ dropInput, setDropInput, onCreateDrop, formErrors }) {
               formErrors.metadata &&
               styles.inputError
             }
-            onFocus={() => setFocused({ ...focused, metadata: true })}
+            onBlur={() => setFocused({ ...focused, metadata: true })}
             onChange={handleMetadataSelected}
           />
           {focused.metadata && formErrors && formErrors.metadata && (
