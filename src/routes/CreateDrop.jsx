@@ -5,9 +5,11 @@ import { storeFiles, storeNFTMetadatas } from "../ipfs/storage"
 import { createNFTCollection } from "../nft-contract/createNFTCollection"
 
 import DropDetails from "../components/DropDetails"
-import UploadNFT from "../components/UploadNFT"
+import UploadNFT from "../components/UploadNFT";
+import UploadPresaleNFT from "../components/UploadPresaleNFT"
 
 import styles from "./css/create-drop.module.css"
+import PresaleDetails from "../components/PresaleDetails"
 
 function CreateDrop(props) {
   const [images, setImages] = useState([])

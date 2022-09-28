@@ -16,6 +16,9 @@ function Sidebar(props) {
       <Link to="create-drop">
         <div className={styles.navItem}>Create Drop</div>
       </Link>
+      <Link to="create-presale">
+        <div className={styles.navItem}>Create Presale</div>
+      </Link>
     </nav>
   )
 }

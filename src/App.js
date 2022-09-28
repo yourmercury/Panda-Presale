@@ -11,6 +11,7 @@ import Sidebar from "./components/Sidebar"
 
 import styles from "./App.module.css"
 import "react-toastify/dist/ReactToastify.css"
+import CreatePresale from "./routes/CreatePresale"
 
 function App() {
   const [account, setAccount] = useState()
@@ -45,6 +46,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="create-drop" element={<CreateDrop />} />
+            <Route path="create-presale" element={<CreatePresale />} />
           </Routes>
         ) : (
           <div className={styles.connectWalletError}>
