@@ -1,5 +1,5 @@
 import { ethers } from "ethers"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 
@@ -21,10 +21,24 @@ function App() {
     setAccount(accounts[0])
   }, [])
 
+  const handleDisonnect = useCallback(async () => {
+    setAccount()
+  }, [])
+
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", async (accounts) => {
+      setAccount(accounts[0])
+    })
+  }, [])
+
   return (
     <div className={styles.container}>
       <ToastContainer />
-      <Header account={account} onConnect={handleConnect} />
+      <Header
+        account={account}
+        onConnect={handleConnect}
+        onDisconnect={handleDisonnect}
+      />
       <Sidebar />
       <div className={styles.main}>
         {account ? (

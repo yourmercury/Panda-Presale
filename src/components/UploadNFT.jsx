@@ -55,7 +55,9 @@ function UploadNFT({ images, onImageSelected, onRemoveImage }) {
           )}
         </div>
       )}
-      <div className={styles.feeDiv}>Fee: {UIConstants.dropFee}</div>
+      <div className={styles.feeDiv}>
+        Fee: {UIConstants.dropFee} {UIConstants.dropToken}
+      </div>
     </div>
   )
 }
