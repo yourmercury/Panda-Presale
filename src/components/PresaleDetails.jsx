@@ -53,11 +53,11 @@ function PresaleDetails({ dropInput, setDropInput, onCreateDrop, formErrors }) {
             </InputShell>
 
             <InputShell label={"Free/Public/Whitelist"} required outline>
-            <SelectOption options={[1,5,10]}/>
+            <SelectOption options={["Free","Public","Whitelist"]}/>
             </InputShell>
 
             <InputShell label={"List On"} required outline>
-            <SelectOption options={[1,5,10]}/>
+            <SelectOption options={["Opensea","Gamma","Solsea"]}/>
             </InputShell>
           </div>
         </div>
