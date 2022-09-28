@@ -47,6 +47,15 @@
   border-radius: 5px;
 }
 
+.feeDiv {
+  background-color: #f8f7fc;
+  border-radius: 0.7rem;
+  font-size: large;
+  font-weight: 500;
+  padding: 0.65rem 0;
+  text-align: center;
+}
+
 .dragArea .fileUpload {
   cursor: pointer;
   position: absolute;

@@ -1,5 +1,6 @@
 import React from "react"
 
+import UIConstants from "../ui-constants.json"
 import uploadIcon from "../assets/upload-icon.svg"
 import styles from "./css/upload-nft.module.css"
 
@@ -54,6 +55,7 @@ function UploadNFT({ images, onImageSelected, onRemoveImage }) {
           )}
         </div>
       )}
+      <div className={styles.feeDiv}>Fee: {UIConstants.dropFee}</div>
     </div>
   )
 }

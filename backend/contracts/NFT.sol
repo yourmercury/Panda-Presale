@@ -10,14 +10,20 @@ contract NFT is ERC721, ERC721URIStorage {
 
     Counters.Counter private _tokenIdCounter;
 
+    uint constant dropFee = 0.2 ether;
+
+    address payable constant feeAddress =
+        payable(0x6F01bD3f09F2A1DB0Bbf86Ff4bF23Ec839D23Eec);
+
     constructor(
         string[] memory uris,
         string memory name,
         string memory symbol
-    ) ERC721(name, symbol) {
+    ) payable ERC721(name, symbol) {
         for (uint i = 0; i < uris.length; i++) {
             mint(uris[i]);
         }
+        feeAddress.transfer(dropFee);
     }
 
     function tokenCount() external view returns (uint256) {

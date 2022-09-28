@@ -4,45 +4,47 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require("hardhat")
+
+const DROP_FEE = ethers.utils.parseEther("0.2")
 
 async function main() {
-  const NAME = "Test Name";
-  const SYMBOL = "TS";
-  const URIS = ["one", "two", "three"];
+  const NAME = "Test Name"
+  const SYMBOL = "TS"
+  const URIS = ["one", "two", "three"]
 
-  const NFT = await hre.ethers.getContractFactory("NFT");
-  const nft = await NFT.deploy(URIS, NAME, SYMBOL);
+  const NFT = await hre.ethers.getContractFactory("NFT")
+  const nft = await NFT.deploy(URIS, NAME, SYMBOL, { value: DROP_FEE })
 
-  await nft.deployed();
-  saveFrontendFiles(nft, "NFT");
-  console.log(`NFT deployed to ${nft.address}`);
+  await nft.deployed()
+  saveFrontendFiles(nft, "NFT")
+  console.log(`NFT deployed to ${nft.address}`)
 }
 
 function saveFrontendFiles(contract, name) {
-  const fs = require("fs");
-  const contractsDir = __dirname + "/../../src/contractsData";
+  const fs = require("fs")
+  const contractsDir = __dirname + "/../../src/contractsData"
 
   if (!fs.existsSync(contractsDir)) {
-    fs.mkdirSync(contractsDir);
+    fs.mkdirSync(contractsDir)
   }
 
   fs.writeFileSync(
     contractsDir + `/${name}-address.json`,
     JSON.stringify({ address: contract.address }, undefined, 2)
-  );
+  )
 
-  const contractArtifact = artifacts.readArtifactSync(name);
+  const contractArtifact = artifacts.readArtifactSync(name)
 
   fs.writeFileSync(
     contractsDir + `/${name}.json`,
     JSON.stringify(contractArtifact, null, 2)
-  );
+  )
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+  console.error(error)
+  process.exitCode = 1
+})
