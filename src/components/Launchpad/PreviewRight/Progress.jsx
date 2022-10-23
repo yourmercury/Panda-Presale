@@ -175,7 +175,7 @@ export default function Progress({ details, reload, handler }) {
         <div>
           {/* This is for the presale timer */}
           <h3 className="mb-[20px]">
-            Presale {isLive == "pending" ? "live" : "ends"} in
+            {isLive != "live" ? isLive :`Presale ${isLive == "pending" ? "live" : "ends"} in`}
           </h3>
           <div className="flex justify-between">
             <div className="flex flex-col items-center">
