@@ -7,6 +7,15 @@
   height: fit-content;
 }
 
+.containerError {
+  border: 1px solid red;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 40%;
+  height: fit-content;
+}
+
 .dragArea {
   align-items: center;
   background-color: #f8f7fc;

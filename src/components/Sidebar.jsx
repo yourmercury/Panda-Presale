@@ -19,6 +19,12 @@ function Sidebar(props) {
       <Link to="create-presale">
         <div className={styles.navItem}>Create Presale</div>
       </Link>
+      <Link to="pools">
+        <div className={styles.navItem}>Pools</div>
+      </Link>
+      <Link to="deployed">
+        <div className={styles.navItem}>My Presale</div>
+      </Link>
     </nav>
   )
 }

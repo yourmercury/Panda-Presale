@@ -1,4 +1,5 @@
 {
-  "dropFee": "0.2",
+  "dropFee_": "0.2",
+  "dropFee": "0.001",
   "dropToken": "ETH"
 }

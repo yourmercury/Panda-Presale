@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 
 import UIConstants from "../ui-constants.json"
 import uploadIcon from "../assets/upload-icon.svg"
@@ -6,10 +6,12 @@ import styles from "./css/upload-nft.module.css"
 import formStyles from "./css/drop-details.module.css"
 import InputShell, { TextInput } from "./Inputs/inputShell"
 
-function UploadPresaleNFT({ images, onImageSelected, onRemoveImage }) {
+function UploadPresaleNFT({ images, onImageSelected, onRemoveImage, imageError }) {
+
   return (
-    <div className={styles.container}>
+    <div className={imageError? styles.containerError : styles.container}>
       <div>Upload NFTs</div>
+      {imageError && <p className="text-[red]">Error: {imageError}</p>}
       <div className={styles.dragArea}>
         <div className={styles.icon}>
           <img alt="Upload Icon" src={uploadIcon} />
@@ -32,9 +34,9 @@ function UploadPresaleNFT({ images, onImageSelected, onRemoveImage }) {
             className=""
           />
         </div> */}
-        <InputShell label={"Image Url"} required>
+        {/* <InputShell label={"Image Url"} required>
           <TextInput placeholder={"www."}/>
-        </InputShell>
+        </InputShell> */}
       {images && (
         <div className={styles.imageContainer}>
           {images.length >= 3 ? (

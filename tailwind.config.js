@@ -8,7 +8,8 @@ module.exports = {
       "inp-grey": "#f8f7fc",
       "btn-green": "#21bf73",
       "err-red": "#df4759",
-      "border-color": "#dce2ec"
+      "border-color": "#dce2ec",
+      "orange": "#eb9834",
     },
     extend: {
       spacing: {
