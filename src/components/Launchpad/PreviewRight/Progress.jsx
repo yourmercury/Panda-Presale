@@ -234,7 +234,7 @@ export default function Progress({ details, reload, handler }) {
             <button
               className="bg-btn-green text-[white] rounded-xl w-full my-1 py-[5px]"
               onClick={() => {
-                  if(details.endAt * 1000 < Date.now()){
+                  if(details.presale.endAt * 1000 < Date.now()){
                       claimToast();
                       return;
                   }
