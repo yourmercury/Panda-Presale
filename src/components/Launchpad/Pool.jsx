@@ -1,11 +1,31 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useNavigation } from "react-router-dom"
+import { getPresaleDetails } from "../../nft-contract/connectToContract"
 import ProgressBar from "./ProgressBar"
 
-export default function Pool({ details, handler }) {
-  let { isLive, tint } = isLiveStyle(details)
+export default function Pool({ contract, handler }) {
+    const [details, setDetails] = useState(null);
+    const [isLoaded, load] = useState(false);
+    let { isLive, tint } = isLiveStyle(details);
+
+  useEffect(()=>{
+    if(!isLoaded) {
+        load(true);
+        return;
+    }
+
+    getPresaleDetails(contract.address)
+    .then((detail)=>{
+        setDetails(detail);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+
+  }, [isLoaded])
   return (
     <div className="border border-border-color rounded-xl p-2">
+      {details && <div>
       <div>
         <p className={`text-sm m-0 text-${tint}`}>{isLive}</p>
       </div>
@@ -28,11 +48,13 @@ export default function Pool({ details, handler }) {
           </button>
         </Link>
       </div>
+      </div>}
     </div>
   )
 }
 
 export function isLiveStyle(details) {
+    if(!details) return {isLive: null, tint: null}
   let isLive = details.presale.startAt * 1000 > Date.now() ? "pending" : false
 
   isLive =

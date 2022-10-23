@@ -6,28 +6,19 @@ import { getMyContracts } from "../firebase";
 import { toast } from "react-toastify";
 
 export default function Deployed() {
-  const [isLoaded, load] = useState(false);
-  const [details, setDetails] = useState([]);
-
-  async function resloveContracts() {
-    try {
-        let addr = await getAddress()
-      let contracts = await getMyContracts(addr);
-      let arr = []
-      for (let i = 0; i < contracts.length; i++) {
-        try {
-          let detail = await getPresaleDetails(contracts[i].address);
-          arr.push(detail)
-        } catch {
-          continue
-        }
+    const [isLoaded, load] = useState(false);
+    const [details, setDetails] = useState([]);
+    const [contracts, setContracts] = useState([]);
+  
+    async function resloveContracts() {
+      try {
+        let contracts = await getMyContracts(await getAddress());
+        let arr = [];
+      setContracts(contracts);
+      } catch (error) {
+        console.log(error)
       }
-
-      setDetails([...arr]);
-    } catch (error) {
-      console.log(error)
     }
-  }
 
   function resloverToast(){
     toast.promise(
@@ -59,8 +50,8 @@ export default function Deployed() {
 
   return (
     <div className={"grid grid-cols-4 gap-4"}>
-      {details.length > 0 ? (
-        details.map((detail, index) => <Pool details={detail} key={index} handler />)
+      {contracts.length > 0 ? (
+        contracts.map((contract, index) => <Pool contract={contract} key={index} handler />)
       ) : (
         <p></p>
       )}

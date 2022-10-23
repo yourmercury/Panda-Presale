@@ -8,22 +8,13 @@ import { toast } from "react-toastify";
 export default function Pools() {
   const [isLoaded, load] = useState(false);
   const [details, setDetails] = useState([]);
+  const [contracts, setContracts] = useState([]);
 
   async function resloveContracts() {
     try {
       let contracts = await getContracts();
-      let arr = []
-      for (let i = 0; i < contracts.length; i++) {
-        try {
-          let detail = await getPresaleDetails(contracts[i].address);
-          arr.push(detail)
-        } catch (error) {
-            console.log(error)
-          continue
-        }
-      }
-      console.log("ran this", arr)
-      setDetails([...arr]);
+      let arr = [];
+    setContracts(contracts);
     } catch (error) {
       console.log(error)
     }
@@ -55,33 +46,15 @@ export default function Pools() {
     }
 
     resloverToast();
-
-    // getPresaleDetails("0x9F0f1eD26653C3b5ce78AFF1450C64EBcB6F235A")
-    //   .then((details) => {
-    //     console.log(details)
-    //     setDetails([details])
-    //   })
-    //   .catch((error) => {
-    //     throw error
-    //   })
   }, [isLoaded])
 
   return (
     <div className={"grid grid-cols-4 gap-4"}>
-      {details.length > 0 ? (
-        details.map((detail, index) => <Pool details={detail} key={index} />)
+      {contracts.length > 0 ? (
+        contracts.map((contract, index) => <Pool contract={contract} key={index} />)
       ) : (
         <p>No Presale</p>
       )}
-      {/* <Pool />
-      <Pool />
-      <Pool />
-      <Pool />
-      <Pool />
-      <Pool />
-      <Pool />
-      <Pool />
-      <Pool /> */}
     </div>
   )
 }

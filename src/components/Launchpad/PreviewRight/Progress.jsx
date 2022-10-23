@@ -12,7 +12,7 @@ import ProgressBar from "../ProgressBar"
 export default function Progress({ details, reload, handler }) {
   const [minting, mint] = useState(false)
   const [fee, setFee] = useState("")
-  const [isLive, setLive] = useState(isLiveStyle(details));
+  const [{isLive, tint}, setLive] = useState(isLiveStyle(details));
   const { d, h, m, s } = useCountDown(
     details, setLive
   )
@@ -167,6 +167,8 @@ export default function Progress({ details, reload, handler }) {
         break;
   }
 
+  console.log(mint_label)
+
   return (
     <>
       <div className="rounded-2xl border border-border-color py-[10px] px-[20px]">
@@ -211,7 +213,7 @@ export default function Progress({ details, reload, handler }) {
         <div>
           {/* This is for the mint fee */}
           <p>Presale min mint Fee: {details.presale.fee} ETHW</p>
-          {!handler && (
+          {!handler && isLive=="live" && (
             <div className="rounded-xl bg-inp-grey flex p-1 py-[5px]">
               <input
                 type="number"
@@ -252,7 +254,7 @@ export default function Progress({ details, reload, handler }) {
               Withdraw
             </button>
           )}
-          {!handler && (
+          {!handler && isLive=="live" && (
             <button
               className="flex justify-center items-center w-full text-err-red"
               onClick={() => {
@@ -279,30 +281,7 @@ function useCountDown(details, setLive) {
       return
     }
     let interval = setInterval(() => {
-      let isLive =
-        details.presale.startAt * 1000 > Date.now() ? "pending" : false
-
-      isLive =
-        isLive == false && details.presale.endAt * 1000 > Date.now()
-          ? "live"
-          : isLive
-
-      //   console.log(isLive)
-      isLive =
-        isLive == false && details.presale.endAt * 1000 < Date.now()
-          ? false
-          : isLive
-
-      isLive =
-        isLive == false && details.presaleCount >= details.presale.softCap
-          ? "complete"
-          : isLive
-
-      isLive =
-        isLive == false && details.presaleCount < details.presale.softCap
-          ? "cancelled"
-          : isLive;
-
+        let {isLive, tint} = isLiveStyle(details)
         
         let time = isLive == "pending"
           ? details.presale.startAt
@@ -310,10 +289,10 @@ function useCountDown(details, setLive) {
           ? details.presale.endAt
           : false
     
-      if (details.endAt < Date.now() / 1000) {
+      if (details.presale.endAt < Date.now() / 1000) {
         setObj({ d: 0, h: 0, m: 0, s: 0 })
         clearInterval(interval)
-        setLive(isLive);
+        setLive({isLive, tint});
         return
       }
 
