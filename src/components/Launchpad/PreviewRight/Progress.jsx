@@ -167,15 +167,13 @@ export default function Progress({ details, reload, handler }) {
         break;
   }
 
-  console.log(mint_label)
-
   return (
     <>
       <div className="rounded-2xl border border-border-color py-[10px] px-[20px]">
         <div>
           {/* This is for the presale timer */}
           <h3 className="mb-[20px]">
-            {isLive != "live" ? isLive :`Presale ${isLive == "pending" ? "live" : "ends"} in`}
+            {isLive != "live" && isLive != "pending" ? isLive :`Presale ${isLive == "pending" ? "live" : "ends"} in`}
           </h3>
           <div className="flex justify-between">
             <div className="flex flex-col items-center">
