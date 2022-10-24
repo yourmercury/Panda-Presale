@@ -112,7 +112,7 @@ export default function CreatePresale() {
       if(!baseURI) throw("Upload to IPFS failed");
       // let baseURI;
       let {address, deployer} = await createNFTCollectionWithPresale(
-        "https://bafybeic2ktd23y2negt3emih763hqxcfaq5ivpmqnwlnzfmxlkr2xylrfi.ipfs.nftstorage.link/" || baseURI,
+        baseURI,
         form.collectionName,
         form.symbol,
         form
