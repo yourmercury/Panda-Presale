@@ -76,7 +76,9 @@ contract MyToken is ERC721, ERC721Enumerable, Ownable {
     function contribute () external payable presalePeriod {
         require(msg.value >= minMintFee, "payment is less than the mint fee");
         require(contributor[msg.sender] < maxPerWallet, "you have ordered maximally");
-        uniqeContributors = contributor[msg.sender] > 0? uniqeContributors + 0: uniqeContributors + 1;
+        if(contributor[msg.sender] == 0){
+            uniqeContributors++;
+        }
         contribution+=msg.value;
         contributor[msg.sender]++;
         contributorValue[msg.sender]+=msg.value;
